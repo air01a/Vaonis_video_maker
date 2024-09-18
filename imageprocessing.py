@@ -36,9 +36,9 @@ def add_progress_bar(image, current_index, total_images):
     # Dessiner le triangle
     triangle_size = 10
     points = np_array([
-        [bar_x - triangle_size, triangle_y],
-        [bar_x, triangle_y - triangle_size // 2],
-        [bar_x, triangle_y + triangle_size // 2]
+        [bar_x, triangle_y],
+        [bar_x-triangle_size, triangle_y - triangle_size // 2],
+        [bar_x-triangle_size, triangle_y + triangle_size // 2]
     ])
     fillPoly(image_copy, [points], triangle_color)
 

@@ -1,4 +1,3 @@
-import cv2
 import os
 from PIL import Image
 
@@ -14,14 +13,14 @@ title = "NGC6992"
 subtitle = ["2024-09-19", 'Vespera pro','470 images, 10 sec expo']
 # Size of video
 new_size = (800, 800)
-fps = 10  # Framerate
+fps = 20  # Framerate
 
 
 use_cache=True
 cache_only=False
 
 
-image_selector_rate= [(50,1),(200,2),(400,4),(800,8)]
+image_selector_rate= [(200,1),(400,2),(800,4)]
 
 
 # List all files
@@ -62,6 +61,6 @@ for img_name in selected_images:
     i+=1
 
 
-create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle, final_image)
+create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle, (final_image,1.5,1,100))
 print(f"Vidéo créée avec succès : {video_filename}")
 

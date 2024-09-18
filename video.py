@@ -1,13 +1,15 @@
 from cv2 import VideoWriter_fourcc, VideoWriter, resize, imread, INTER_AREA
-from transition import create_title, create_fade_sequence
+from transition import create_title, create_fade_sequence, resize_with_zoom_effect, zoom_image
 from imageprocessing import add_progress_bar
 
 
     
-def create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle,  final_image):
+def create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle,  final_parameters):
     total_image=len(images)
 
-
+    final_image=None
+    if final_parameters!=None:
+        (final_image, initial_zoom, final_zoom, step) = final_parameters
     fourcc = VideoWriter_fourcc(*'XVID')  # Codec pour AVI
     video = VideoWriter(video_filename, fourcc, fps, new_size)
 
@@ -36,10 +38,13 @@ def create_video(aligned_images, images, image_folder, new_size, video_filename,
         img_title=create_title(new_size, "Post processed",[])
         for _ in range(2*fps):
             video.write(img_title)
-        final_image = resize(imread(image_folder+'/'+final_image), new_size, interpolation=INTER_AREA)
+        final_image = imread(image_folder+'/'+final_image)
         for img in create_fade_sequence(final_image, 2*fps,False):
-            video.write(img)
-        for _ in range(8*fps):
-            video.write(final_image)
+            video.write(resize(zoom_image(img,initial_zoom), new_size, interpolation=INTER_AREA))
+        for img in resize_with_zoom_effect(final_image,initial_zoom, final_zoom, step):
+            last_image=resize(img, new_size, interpolation=INTER_AREA)
+            video.write(last_image)
+        for _ in range(5*fps):
+            video.write(last_image)
 
     video.release()

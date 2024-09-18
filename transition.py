@@ -67,3 +67,38 @@ def create_fade_sequence(image, num_images, out=True):
     if not out:
         sequence_images=sequence_images[::-1]
     return sequence_images
+
+
+def zoom_image(image, zoom):
+    if zoom==1:
+        return image
+    height, width = image.shape[:2]
+
+    if (zoom>1):
+        new_width = int(width/zoom)
+        new_height = int(height/zoom)
+        x_start = (width-new_width ) // 2
+        y_start = (height-new_height) // 2
+        cropped_image = image[y_start:y_start+height, x_start:x_start+width]
+    else:
+        new_width = int(width*zoom)
+        new_height = int(height*zoom)
+        x_start = (width-new_width) // 2
+        y_start = (height-new_height) // 2
+        cropped_image = np.zeros_like(image)
+        cropped_image[y_start:y_start+new_height, x_start:x_start+new_width] = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+
+    return cropped_image
+
+def resize_with_zoom_effect(image, initial_zoom=1.2, final_zoom=1.0, steps=100):
+    # Obtenir les dimensions de l'image
+    height, width = image.shape[:2]
+    
+    # Boucle pour chaque étape de zoom
+    for step in range(steps):
+        # Calculer le facteur de zoom à cette étape
+        zoom_factor = initial_zoom - (initial_zoom - final_zoom) * (step / steps)
+        
+        cropped_image = zoom_image(image, zoom_factor)
+        
+        yield cropped_image  # Retourne chaque image dézoomée
