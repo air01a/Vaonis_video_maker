@@ -40,7 +40,7 @@ image_to_process=len(selected_images)
 
 
 # load reference image
-ref_image_path = os.path.join(image_folder, selected_images[int(total_image/2)])  # Choisis l'image de référence vers le milieu
+ref_image_path = os.path.join(image_folder, selected_images[int(len(selected_images)/2)])  # Choisis l'image de référence vers le milieu
 ref_image = Image.open(ref_image_path)
 
 # List of aligned images
@@ -62,7 +62,6 @@ for img_name in selected_images:
     i+=1
 
 
-
-create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle)
+create_video(aligned_images, images, image_folder, new_size, video_filename, fps, title, subtitle, final_image)
 print(f"Vidéo créée avec succès : {video_filename}")
 
