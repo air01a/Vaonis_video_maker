@@ -11,7 +11,7 @@ def create_title(size, title, subtitle):
 
 
     # Taille et position du texte
-    title_scale = 3  # Pourcentage de la hauteur de l'image pour le titre (ici environ 30 %)
+    title_scale = 1  # Pourcentage de la hauteur de l'image pour le titre (ici environ 30 %)
     subtitle_scale = 1  # Pourcentage de la hauteur de l'image pour le texte (ici environ 10 %)
 
     # Couleur du texte (noir)
