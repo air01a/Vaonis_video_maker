@@ -9,3 +9,5 @@ I created this script to align the images and automatically produce the final vi
 
 https://github.com/user-attachments/assets/45456193-706a-45a3-b599-4e8c6397777d
 
+https://github.com/user-attachments/assets/b3d66ea3-3664-4436-a480-3af2b25c8ab2
+
