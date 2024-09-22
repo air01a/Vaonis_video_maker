@@ -9,11 +9,11 @@ from multiprocessing import Process, Value, Array
 
 
 # Folder with image
-image_folder = "NGC7000"
-video_filename = "ngc7000.avi"
-final_image = "ngc7000.png"
-title = "NGC7000 - Nebuleuse de l'Amerique du Nord"
-subtitle = ["2024-09-19", 'Vespera pro','2000 images, 10 sec expo']
+image_folder = "M31/"
+video_filename = "M31.avi"
+final_image = "m31.png"
+title = "M31 - Androméde"
+subtitle = ["2024-09-21", 'Vespera pro','983 images, 10 sec expo']
 # Size of video
 new_size = (800, 800)
 fps = 20  # Framerate

@@ -28,7 +28,7 @@ def create_video(aligned_images, images, image_folder, new_size, video_filename,
         video.write(img)
         last_img=img
 
-    for i in range(2*fps):
+    for i in range(4*fps):
         video.write(last_img)
     for img in create_fade_sequence(last_img, 2*fps):
         video.write(img)
